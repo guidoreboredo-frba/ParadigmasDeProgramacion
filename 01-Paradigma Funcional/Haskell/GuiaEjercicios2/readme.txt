@@ -1,5 +1,5 @@
 
-**Ejercicios Prácticos Paradigma Funcional**
+#Ejercicios Prácticos Paradigma Funcional
 
 1) Queremos calcular el sueldo de los empleados de nuestra empresa. Tenemos dos tipos de empleado:
 ● Los comunes: nos interesa saber el sueldo básico y el nombre.

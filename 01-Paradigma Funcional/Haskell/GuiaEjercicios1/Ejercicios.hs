@@ -1,3 +1,5 @@
+import Text.Show.Functions
+
 -- Funcion para obtener el doble de un numero
 doble nro = nro * 2 
 -- Si quiero restingir los tipos de datos de siguiente para que no los infiera Haskell
@@ -80,7 +82,7 @@ cuadruple' nro = (doble . doble) nro
 -}
 
 esMayorA :: Integer -> Bool
-esMayorA nro =  ((doble.siguiente) (nro+2)) > 10
+esMayorA nro =  (doble.siguiente) (nro + 2) > 10
 
 ----------------------------------------------------------------------------------------------------------------------------------
 {-
@@ -91,7 +93,52 @@ suma
 sumarDos
 -}
 
+--triple
+tripleL :: Integer -> Integer
+tripleL = (\x -> x * 3)
+
+--siguiente
+siguienteL :: Integer -> Integer
+siguienteL = (\x -> x + 1)
+
+--suma
+sumaL :: Integer -> Integer -> Integer
+sumaL = (\x y-> x + y)
+
+--sumarDos
+masDosL :: Integer -> Integer
+masDosL = (\x -> x + 2)
 
 
+----------------------------------------------------------------------------------------------------------------------------------
+--23/4
+
+suma :: Integer -> Integer -> Integer
+(suma x) y = x + y
+
+suma' :: (Integer, Integer) -> Integer
+suma'(x,y) = x+y
+
+esParSiguiente :: Integer -> Bool
+esParSiguiente nro = (even . siguiente) nro
+
+esImparSiguienteSumaSiete :: Integer -> Bool
+esImparSiguienteSumaSiete nro = odd . siguiente . suma 7 $ nro
+
+esMayorA' :: Integer -> Bool
+esMayorA' x = (>10).doble.siguiente.suma 2 $ x
 
 
+cabeza (x:xs) = x
+cola(_:xs) = xs
+
+sayHello :: String -> String
+sayHello name = "Hello " ++ name ++ "!"
+
+sayTo :: String -> (String -> String)
+(sayTo str1) name = str1 ++ name ++ "!"
+
+primero :: (Integer,Integer,Integer) -> Integer
+primero (x,_,_) = x
+
+----------------------------------------------------------------------------------------

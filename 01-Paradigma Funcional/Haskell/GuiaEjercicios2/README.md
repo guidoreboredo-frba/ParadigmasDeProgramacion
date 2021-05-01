@@ -26,7 +26,8 @@ True
 > *Main> find' even [41..339]
  42
 
- 3.1) Aprovechar la función find’ para aplicarla a este dominio.
+ 4) Aprovechar la función find’ para aplicarla a este dominio.
+ 
  **data Politico = Politico {proyectosPresentados :: [String], sueldo :: Float, edad :: Int } deriving Show
  
 >politicos = [ Politico ["ser libres", "libre estacionamiento coches politicos", "ley no fumar", "ley 19182"] 20000 81, Politico ["tratar de reconquistar luchas sociales"] 10000 63, Politico ["tolerancia 100 para delitos"] 15500 49 ]

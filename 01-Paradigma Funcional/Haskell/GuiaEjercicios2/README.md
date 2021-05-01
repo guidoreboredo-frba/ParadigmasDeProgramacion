@@ -12,7 +12,7 @@ El sueldo que cobran los comunes se determina por el sueldo básico, en los empl
 
 2) Se conocen estas bebidas:
 
-**data Bebida = Cafe {nombreBebida :: String} | Gaseosa {sabor ::String , azucar :: Integer}
+**data Bebida = Cafe {nombreBebida :: String} | Gaseosa {sabor ::String , azucar :: Integer}**
 
 Dado un producto determinar si es energizante.
    - Si es café es energizante si es un capuchino.
@@ -21,14 +21,14 @@ Dado un producto determinar si es energizante.
 True
  
 3) Resolver la función find’ que encuentra el primer elemento que cumple una condición. No se puede resolver con recursividad. Si ningún elemento cumple la condición dejar que falle.
-**find’ :: (a -> Bool) -> [a] -> a
+**find’ :: (a -> Bool) -> [a] -> a**
 
 > *Main> find' even [41..339]
  42
 
  4) Aprovechar la función find’ para aplicarla a este dominio.
  
- **data Politico = Politico {proyectosPresentados :: [String], sueldo :: Float, edad :: Int } deriving Show
+ **data Politico = Politico {proyectosPresentados :: [String], sueldo :: Float, edad :: Int } deriving Show**
  
 >politicos = [ Politico ["ser libres", "libre estacionamiento coches politicos", "ley no fumar", "ley 19182"] 20000 81, Politico ["tratar de reconquistar luchas sociales"] 10000 63, Politico ["tolerancia 100 para delitos"] 15500 49 ]
  

@@ -21,6 +21,7 @@ Dado un producto determinar si es energizante.
 True
  
 3) Resolver la función find’ que encuentra el primer elemento que cumple una condición. No se puede resolver con recursividad. Si ningún elemento cumple la condición dejar que falle.
+
 **find’ :: (a -> Bool) -> [a] -> a**
 
 > *Main> find' even [41..339]

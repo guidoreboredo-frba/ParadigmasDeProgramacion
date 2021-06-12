@@ -4,8 +4,9 @@ psicosis = Pelicula "Psicosis" "Terror" 109 "Estados Unidos"
 perfumeDeMujer= Pelicula "Perfume de Mujer" "Drama" 150  "Estados Unidos"
 elSaborDeLasCervezas = Pelicula "El sabor de las cervezas"  "Drama" 95 "Iran"
 lasTortugasTambienVuelan = Pelicula "Las tortugas también vuelan" "Drama" 103 "Iran"
---juan = Usuario "juan" "estandar" 23  "Argentina" [perfumeDeMujer] 60
-juan = Usuario "juan" "estandar" 23  "Argentina" [perfumeDeMujer, elSaborDeLasCervezas, lasTortugasTambienVuelan, lasTortugasTambienVuelan] 60
+juan = Usuario "juan" "estandar" 23  "Argentina" [perfumeDeMujer] 60
+
+peliculasEmpresa = [psicosis, elSaborDeLasCervezas, lasTortugasTambienVuelan, perfumeDeMujer]
 
 
 data Pelicula = Pelicula {
@@ -83,8 +84,31 @@ vio pelicula usuario = elem pelicula (peliculas usuario)
 cumpleCriterios :: Pelicula -> [CriterioBusqueda] -> Bool
 cumpleCriterios pelicula criterios = all  ($ pelicula) criterios
 
+{- busquedaDePeliculas juan [deDondeSaliste "Iran",cuestionDeGenero ["Drama", "Comedia"],(not.teQuedasteCorto)] peliculasEmpresa -}
 
+-------------------SEGUNDA PARTE
 
+--PUNTO 1
+data Capitulo = Capitulo {
+    nombreS   :: String, 
+    generoS   :: String,
+    duracionS :: Int, 
+    origenS   :: String,
+    afecta    :: (UnUsuario -> UnUsuario)
+    } deriving Show
 
+--PUNTO 2
 
+consumen :: UnUsuario -> Capitulo -> UnUsuario
+consumen usuario capitulo = (afecta capitulo)  usuario
 
+capituloI = Capitulo "Dr. House - Piloto" "Drama" 30 "Estados Unidos"  (\usuario -> usuario {nivelSalud = (nivelSalud usuario) - 10})
+
+--PUNTO 3
+--consumen juan capituloI
+
+--PUNTO 4
+type Serie :: [Capitulo]
+
+maraton :: UnUsuario -> Serie -> UnUsuario
+maraton usuario capitulos = foldl consumen usuario capitulos 

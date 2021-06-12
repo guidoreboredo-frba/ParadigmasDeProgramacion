@@ -1,4 +1,4 @@
-import Text.Show.Functions
+import           Text.Show.Functions
 
 psicosis = Pelicula "Psicosis" "Terror" 109 "Estados Unidos"
 perfumeDeMujer= Pelicula "Perfume de Mujer" "Drama" 150  "Estados Unidos"
@@ -10,21 +10,21 @@ peliculasEmpresa = [psicosis, elSaborDeLasCervezas, lasTortugasTambienVuelan, pe
 
 
 data Pelicula = Pelicula {
-    nombreP :: String, 
-    genero :: String,
-    duracion :: Int, 
-    origen :: String
+    nombreP  :: String,
+    genero   :: String,
+    duracion :: Int,
+    origen   :: String
     } deriving (Show,Eq)
 
 data UnUsuario = Usuario {
-    nombre :: String, 
-    categoria :: String, 
-    edad :: Int, 
+    nombre         :: String,
+    categoria      :: String,
+    edad           :: Int,
     paisResidencia :: String,
-    peliculas :: [Pelicula],
-    nivelSalud :: Int  
-    } deriving Show 
- 
+    peliculas      :: [Pelicula],
+    nivelSalud     :: Int
+    } deriving Show
+
 
 -- PUNTO 2
 
@@ -37,7 +37,7 @@ premiarUsuariosFieles :: [UnUsuario] -> [UnUsuario]
 premiarUsuariosFieles usuarios = map premiarSiEsFiel usuarios
 
 premiarSiEsFiel :: UnUsuario -> UnUsuario
-premiarSiEsFiel usuario 
+premiarSiEsFiel usuario
      | esFiel usuario = subirCategoria usuario
      | otherwise = usuario
 
@@ -52,7 +52,7 @@ subirCategoria usuario = usuario {categoria = (nuevaCategoria.categoria) usuario
 
 nuevaCategoria :: String -> String
 nuevaCategoria "basica" = "estandar"
-nuevaCategoria _ = "premium"
+nuevaCategoria _        = "premium"
 
 -- PUNTO 4
 
@@ -90,9 +90,9 @@ cumpleCriterios pelicula criterios = all  ($ pelicula) criterios
 
 --PUNTO 1
 data Capitulo = Capitulo {
-    nombreS   :: String, 
+    nombreS   :: String,
     generoS   :: String,
-    duracionS :: Int, 
+    duracionS :: Int,
     origenS   :: String,
     afecta    :: (UnUsuario -> UnUsuario)
     } deriving Show
@@ -111,4 +111,4 @@ capituloI = Capitulo "Dr. House - Piloto" "Drama" 30 "Estados Unidos"  (\usuario
 type Serie :: [Capitulo]
 
 maraton :: UnUsuario -> Serie -> UnUsuario
-maraton usuario capitulos = foldl consumen usuario capitulos 
+maraton usuario capitulos = foldl consumen usuario capitulos

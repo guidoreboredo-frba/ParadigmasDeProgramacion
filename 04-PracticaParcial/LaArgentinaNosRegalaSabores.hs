@@ -212,3 +212,25 @@ Arbol {especie = ("cerezo",<function>), altura = 2, ancho = 3, vitalidad = 1.009
 
 {------------------------------------------------------------------------------------------------------------------------------}
 
+{------------------------------------------------------PUNTO 10----------------------------------------------------------------}
+
+modificarArboles :: [FactorClimatico] -> [Arbol] -> [Arbol]
+modificarArboles modificaciones = map (`temporada` modificaciones) 
+
+estanOrdenados :: (Ord a) => (Arbol -> a) -> [FactorClimatico] -> [Arbol] -> Bool
+estanOrdenados criterio modificaciones = verificarOrden.map criterio .  modificarArboles modificaciones
+
+verificarOrden :: (Ord a) => [a] -> Bool
+verificarOrden [_] = True
+verificarOrden (x:y:xs) = (x <= y) && verificarOrden (y:xs) 
+ 
+{-****************PRUEBAS******************
+ *Main> estanOrdenados altura [lluvia 20,crecerUnAnio] [unCerezo,unBanano,unBaoab]
+True   
+*Main> estanOrdenados vitalidad [temperatura 45,crecerUnAnio] [unCerezo,unBanano,unBaoab]
+True   
+*Main> estanOrdenados vitalidad [temperatura 45,crecerUnAnio] [unBanano,unCerezo,unBaoab]              
+False  
+*******************************************-}
+
+{------------------------------------------------------------------------------------------------------------------------------}

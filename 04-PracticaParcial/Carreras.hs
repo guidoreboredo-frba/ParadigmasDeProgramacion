@@ -133,8 +133,6 @@ Auto {color = "Rojo", velocidad = 25, distancia = 5}
 
 type PowerUp = Auto -> Carrera -> Carrera
 
-
-
 afectarALosQueCumplen :: (a -> Bool) -> ( a -> a) -> [a] -> [a]
 afectarALosQueCumplen criterio efecto lista = (map efecto . filter criterio) lista ++ filter (not.criterio) lista
 
@@ -173,9 +171,53 @@ Auto {color = "Verde", velocidad = 25, distancia = 100}
 jetPack :: Int -> PowerUp
 jetPack tiempo unAuto = afectarALosQueCumplen (not.esOtroAuto unAuto) (  modificarVelocidad (`div` 2). correr tiempo . modificarVelocidad (*2))
 
+{-****************PRUEBAS******************
+ 
+*Main> jetPack 2 autoRojo carrera
+[Auto {color = "Rojo", velocidad = 20, distancia = 85},Auto {color = "Verde", velocidad = 25, distancia = 100},Auto {color = "Azul", velocidad = 15, distancia = 3}]
+*Main> autoRojo
+Auto {color = "Rojo", velocidad = 20, distancia = 5}
+
+*******************************************-}
 
 
 {------------------------------------------------------------------------------------------------------------------------------}
+
+{------------------------------------------------------PUNTO 4-----------------------------------------------------------------}
+
+correnTodos :: Int -> Carrera -> Carrera
+correnTodos tiempo  = map (correr tiempo) 
+
+buscarColor :: String -> Carrera -> Auto
+buscarColor unColor  = head . filter ((== unColor) . color)
+
+usaPowerUp :: PowerUp -> String -> Carrera -> Carrera
+usaPowerUp pu color = pu.buscarColor color $ carrera
+
+listaPosiciones :: Carrera -> [(Int,String)] 
+listaPosiciones carrera = map (\auto -> (puesto auto carrera,color auto)) carrera
+
+simularCarrera :: Carrera -> [Carrera ->Carrera] -> [(Int,String)]
+simularCarrera carrera = ordenarPosiciones.listaPosiciones . foldl (flip ($)) carrera
+ 
+{-****************PRUEBAS******************
+*Main> simularCarrera carrera [usaPowerUp (miguelitos 20) "Rojo", correnTodos 10]           
+[(3,"Azul"),(2,"Rojo"),(1,"Verde")]
+*******************************************-}
+
+ordenarPosiciones :: [(Int,String)]->[(Int,String)]
+ordenarPosiciones [] = []
+ordenarPosiciones [(x,y)] = [(x,y)]
+ordenarPosiciones (x:y:xs)
+ | fst x < fst y = x : ordenarPosiciones (y:xs)
+ | otherwise = y: ordenarPosiciones (x:xs)
+
+
+
+
+{------------------------------------------------------------------------------------------------------------------------------}
+
+
 
 
 

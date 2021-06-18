@@ -27,12 +27,13 @@ type Carrera = [Auto]
 
 {--------------------------------------------- DATOS DE PRUEBA ----------------------------------------------------------------}
 
-autoRojo = Auto "Rojo" 20 5
-autoAzul = Auto "Azul" 15 3
-autoVerde = Auto "Verde" 25 100
+autoRojo = Auto "Rojo" 20 0
+autoAzul = Auto "Azul" 15 0
+autoVerde = Auto "Verde" 25 0
+autoBlanco = Auto "Blanco" 10 0
 
 carrera :: Carrera
-carrera = [autoRojo,autoVerde,autoAzul]
+carrera = [autoRojo,autoVerde,autoAzul,autoBlanco]
 
 
 {------------------------------------------------------------------------------------------------------------------------------}
@@ -198,28 +199,15 @@ listaPosiciones :: Carrera -> [(Int,String)]
 listaPosiciones carrera = map (\auto -> (puesto auto carrera,color auto)) carrera
 
 simularCarrera :: Carrera -> [Carrera ->Carrera] -> [(Int,String)]
-simularCarrera carrera = ordenarPosiciones.listaPosiciones . foldl (flip ($)) carrera
+simularCarrera carrera = listaPosiciones . foldl (flip ($)) carrera
  
 {-****************PRUEBAS******************
 *Main> simularCarrera carrera [usaPowerUp (miguelitos 20) "Rojo", correnTodos 10]           
 [(3,"Azul"),(2,"Rojo"),(1,"Verde")]
+
+*Main> simularCarrera carrera [correnTodos 30, usaPowerUp (jetPack 3) "Azul", usaPowerUp (terremoto) "Blanco", correnTodos 40]
+[(3,"Azul"),(2,"Rojo"),(1,"Verde"),(4,"Blanco")]
 *******************************************-}
 
-ordenarPosiciones :: [(Int,String)]->[(Int,String)]
-ordenarPosiciones [] = []
-ordenarPosiciones [(x,y)] = [(x,y)]
-ordenarPosiciones (x:y:xs)
- | fst x < fst y = x : ordenarPosiciones (y:xs)
- | otherwise = y: ordenarPosiciones (x:xs)
 
-
-
-
-{------------------------------------------------------------------------------------------------------------------------------}
-
-
-
-
-
-
-
+{--------------------------------------------------------------------------------------------------------------------------}

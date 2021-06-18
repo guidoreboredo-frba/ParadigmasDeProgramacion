@@ -1,6 +1,6 @@
 {-
 Module      : Haskell
-Description : La Argentina nos regala sabores
+Description : https://docs.google.com/document/d/1uC48Y9eBwrMpkhL5TFc7EeBprmXUHiTa/edit
 Date        : 16.06.2021
 Grupo       : -
 Name        : Guido Reboredo,

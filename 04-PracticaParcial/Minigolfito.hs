@@ -1,10 +1,13 @@
 {-
 Module      : Haskell
-Description : Mini Golfito
+Description : https://docs.google.com/document/d/1LeWBI6pg_7uNFN_yzS2DVuVHvD0M6PTlG1yK0lCvQVE/edit
 Date        : 17.06.2021
 Grupo       : -
 Name        : Guido Reboredo,
 Subject     : Paradigmas de Programación
+
+Mini Golfito
+
 -}
 
 {-------------- Imports --------------------}
@@ -86,7 +89,7 @@ hierro n habilidad = UnTiro {
 
 minimo0 :: Int -> Int
 minimo0 n 
- | (n >= 0) = n
+ | n >= 0 = n
  | otherwise = 0
 
 
@@ -144,7 +147,7 @@ UnTiro {velocidad = 40, precision = 100, altura = 0}
 
 laguna :: Int -> Obstaculo
 laguna largo unTiro 
-    | ((> 80).velocidad $ unTiro) && ( (between 1 5).altura $ unTiro ) = unTiro {altura = (`div` largo).altura $ unTiro}
+    | ((> 80).velocidad $ unTiro) && ( between 1 5 . altura $ unTiro ) = unTiro {altura = (`div` largo).altura $ unTiro}
     | otherwise = tiroEnBlanco
 
 {-****************PRUEBAS******************
@@ -179,7 +182,7 @@ obstaculoSuperado _ = True
 
 
 palosUtiles :: Jugador -> Obstaculo -> [Palo]
-palosUtiles unJugador unObstaculo = filter ( obstaculoSuperado.unObstaculo.(golpe unJugador) ) palosDisponibles
+palosUtiles unJugador unObstaculo = filter ( obstaculoSuperado.unObstaculo.golpe unJugador ) palosDisponibles
 
 {-****************PRUEBAS******************
 
@@ -227,10 +230,10 @@ listaTorneo :: [Puntajes]
 listaTorneo = [(bart,10), (rafa,5), (todd,20)]
 
 ganador :: [Puntajes] -> Puntajes
-ganador = maximoSegun (snd) 
+ganador = maximoSegun snd 
 
 obtenerPerdedores :: [Puntajes] -> [Puntajes]
-obtenerPerdedores puntajes =  (filter (\puntaje ->  (snd.ganador $ puntajes ) > (snd puntaje))) $ puntajes
+obtenerPerdedores puntajes =  filter (\ puntaje -> (snd . ganador $ puntajes) > snd puntaje) puntajes
 
 padresPerdedores :: [Puntajes] -> [String]
 padresPerdedores puntajes = map (padre.fst) (obtenerPerdedores puntajes)

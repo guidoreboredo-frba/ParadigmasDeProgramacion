@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "c:\\Users\\greboredo\\Facultad\\OneDrive - est.frba.utn.edu.ar\\UTN FRBA\\Ing. en Sistemas\\2021-Paradigmas de la Programación\\01-Códigos\\ParadigmasDeProgramacion\\05-Paradigma Lógico\\01-Práctica",
+      "environment": [],
+      "program": "c:\\Users\\greboredo\\Facultad\\OneDrive - est.frba.utn.edu.ar\\UTN FRBA\\Ing. en Sistemas\\2021-Paradigmas de la Programación\\01-Códigos\\ParadigmasDeProgramacion\\05-Paradigma Lógico\\01-Práctica\\build\\Debug\\outDebug",
+      "internalConsoleOptions": "openOnSessionStart",
+      "MIMode": "gdb",
+      "miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe",
+      "externalConsole": false
+    }
+  ]
+}

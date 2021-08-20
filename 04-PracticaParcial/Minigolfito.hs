@@ -58,6 +58,18 @@ mayorSegun f a b
   | f a > f b = a
   | otherwise = b
 
+estanOrdenados :: [Pokemon] -> Bool
+
+EstanOrdenados :: Ord a => [a] -> Bool
+EstanOrdenados [] = True
+EstanOrdenados [_] = True
+EstanOrdenados (x:y:xs) = (x <= y) && EstanOrdenados (y:xs)
+
+
+
+
+
+
 {------------------------------------------------------------------------------------------------------------------------------}
 
 

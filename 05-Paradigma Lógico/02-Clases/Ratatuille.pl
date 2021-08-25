@@ -39,3 +39,9 @@ cocinaBien(Persona, Plato):-
     cocinaBien(Tutor, Plato).
 
 cocinaBien(remy, Plato):- sabeCocinar(_,Plato,_).
+
+
+%3
+esChef(Cocinero,Restaurante):-
+    trabajaEn(Cocinero,Restaurante),
+    

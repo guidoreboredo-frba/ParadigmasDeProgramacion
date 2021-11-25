@@ -1,0 +1,7 @@
+import Plantaciones.*
+
+describe "Terrenos"{
+	test "Campo Abierto Calcula el Costo de Mantenimiento"{
+		assert.that(new CampoAbierto(tamanio = 2, mineral = "", riqueza = 150).costoDeMantenimiento() == 1000)
+	}
+}

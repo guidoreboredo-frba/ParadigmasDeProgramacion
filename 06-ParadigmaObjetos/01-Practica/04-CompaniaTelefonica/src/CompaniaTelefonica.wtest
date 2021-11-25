@@ -1,0 +1,45 @@
+import companiaTelefonica.*
+
+const consumoTelefonico = new ConsumoLlamada()
+const consumoInternet   = new ConsumoInternet()
+const llamadasIlimitadas = new LlamadasGratis()
+const creditoDisponible = new CreditoDisponible(creditoDisponible = 200)
+const megasInternet = new MegasInternet(megasDisponibles = 30)
+const internetIlimitadoLosFindes = new InternetIlimitadoLosFindes()
+
+describe "CONSUMOS"{
+	test "Costo de un Consumo de Telefono de menos de 30 segundos"{
+		consumoTelefonico.segundos(20)
+		assert.that(consumoTelefonico.costo() == 1)
+	}
+	
+	test "Costo de un Consumo de Telefono de mas de 30 segundos"{
+		consumoTelefonico.segundos(40)
+		assert.that(consumoTelefonico.costo() == 1.5)
+	}
+	
+	test "Costo de un Consumo de Internet"{
+		consumoInternet.megas(5)
+		assert.that(consumoInternet.costo() == 0.5)
+	}
+	
+	test "Consumo de Internet no consume Segundos"{
+		assert.notThat(consumoInternet.consumeLlamada())
+	}
+	
+	test "Consumo de Llamada no consume Megas"{
+		assert.notThat(consumoTelefonico.consumeInternet())
+	}
+}
+
+describe "PACKS"{
+	test "Pack de Megas satisface consumo de internet"{
+		consumoInternet.megas(5)
+		assert.that(megasInternet.puedeSatisfacer(consumoInternet))
+	}	
+	test "Packs de Megas no satisface un consumo de llamadas"{
+		consumoTelefonico.segundos(40)
+		assert.notThat(megasInternet.puedeSatisfacer(consumoTelefonico))
+	}
+	
+}

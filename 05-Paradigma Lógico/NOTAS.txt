@@ -1,0 +1,20 @@
+	
+Para hallar si un numero alcanza al menos un valor minimo requerido: 
+
+    between(0, Potencia, PotenciaRequerida). %inversible
+	%Potencia >= PotenciaRequerida. -- No inversible hacia PotenciaRequerida
+
+Si un predicado tiene solo otros predicados en el, va a ser totalmente inversible si los que lo componen son TI. 
+    aceptaElPedido(Persona, Cliente):-
+        puedeRealizarPedido(Persona, Cliente),
+        aceptaElPedido(Persona, Cliente).
+
+    puedeRealizarPedido(Persona, Cliente):-
+        cazafantasma(Persona),
+        cliente(Cliente),
+        forall(tareaPedida(Tarea, Cliente,_), puedeRealizar(Persona, Tarea)).
+
+
+IV) Todo lo que se hace con forall podría también hacerse usando not.
+
+RECORDAR APLICAR POLIMORFISMO DE SER NECESARIO. 
